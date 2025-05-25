@@ -72,11 +72,11 @@ def _cleanup(jobname):
     yield
 
     def _cleanup_suffix(suffix):
-        with Path(jobname + suffix) as p:
-            try:
-                p.unlink()
-            except FileNotFoundError:
-                pass
+        p = Path(jobname + suffix)
+        try:
+            p.unlink()
+        except FileNotFoundError:
+            pass
 
     for suf in ('.pdf', '.out', '.aux', '.log', '-crop.pdf'):
         _cleanup_suffix(suf)
